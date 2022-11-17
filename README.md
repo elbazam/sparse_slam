@@ -44,15 +44,15 @@ $ cd ..
 $ catkin_make
 ```
 
-2. execute .sh file:
+2. Execute .sh file:
 ```sh
 $ cd ~/your_catkin_worspace/src
 $ https://github.com/TalFeiner/robot_description
 $ cd ..
 $ catkin_make
 $ roscd robot_description
-$ chmod +x src/robot_description/python3_alongside_python2.sh
-$ src/robot_description/python3_alongside_python2.sh
+$ chmod +x ./python3_alongside_python2.sh
+$ ./python3_alongside_python2.sh
 ```
 
 
