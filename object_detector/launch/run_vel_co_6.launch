@@ -1,0 +1,5 @@
+<launch>
+  
+  <node name="controller_node" pkg="agent" type="send_vel_complex_6.py" output="screen"/>
+  
+</launch>

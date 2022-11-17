@@ -1,0 +1,6 @@
+<launch>
+  
+  <node name="sslam" pkg="room_slam" type="sslam_node.py" output="screen"/>
+  <node name="results" pkg="room_slam" type="results.py" output="screen"/>
+  
+</launch>
