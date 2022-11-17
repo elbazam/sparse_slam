@@ -12,6 +12,8 @@ Line extration node is forked from https://github.com/bguplp/laser_line_extracti
 ## Video example
 [![Video](https://img.youtube.com/vi/PFMEy0mtcB0/0.jpg)](https://youtu.be/PFMEy0mtcB0)
 
+### The world:
+![The world](agent/media/simulation.jpg)
 
 
 ## Dependencies
@@ -19,6 +21,7 @@ Line extration node is forked from https://github.com/bguplp/laser_line_extracti
 - Python version > 3.5
 - TensorFlow 2.* (GPU version)
 - numpy
+- pandas
 - openCV
 - pip3 install
 - hector_mapping <a href="http://wiki.ros.org/hector_mapping" target="_blank">http://wiki.ros.org/hector_mapping</a> 
@@ -60,5 +63,34 @@ $ src/robot_description/python3_alongside_python2.sh
 - Go to the xarco file ~/robot_description/blattoidea/urdf/kinect.xarco
 - Change the orientation of the kinect to 0 0 0 from 0 0.3 0
 
+## Execution
 
+### Comparison to hector slam algorithm
+
+Create files:
+```sh
+$ cd
+$ mkdir '/home/melodic/data'
+$ mkdir '/home/melodic/data/complex_sslam_data'
+$ mkdir '/home/melodic/data/complex_hector_data'
+$ mkdir '/home/melodic/data/complex_sslam_dt'
+$ mkdir '/home/melodic/data/complex_hector_dt'
+```
+- Big environment:
+```sh
+roslaunch agent big_test.launch
+```
+- Small environment (the example above):
+```sh
+roslaunch agent Test.launch
+```
+### Exectution of only room slam:
+
+```sh
+$ rosrun room_slam sslam_node.py
+```
+
+## Pipelines
+
+- Each package has its own Pipeline readme
 
