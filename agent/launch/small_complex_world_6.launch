@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+
+	<group>
+		
+		<arg name="kinect" default="true"/>
+		<arg name="GPS" default="false"/>
+		<arg name="camera" default="true"/>
+		<arg name="lidar" default="true"/>
+		<arg name="cmd_vel_out" default="cmd_vel"/>
+		<arg name="config_locks" default="$(find blattoidea)/config/twist_mux_locks.yaml"/>
+		<arg name="config_topics" default="$(find blattoidea)/config/twist_mux_topics.yaml"/>
+		<param name="tf_prefix" value="" />		
+		<param name="robot_description" command="$(find xacro)/xacro '$(find blattoidea)/urdf/blattoidea_gazebo.urdf.xacro'
+		kinect:=$(arg kinect)
+		GPS:=$(arg GPS)
+		camera:=$(arg camera)
+		lidar:=$(arg lidar)" />
+	
+		
+		
+		<!-- convert joint states to TF transforms for rviz, etc -->
+		<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+		respawn="false" output="screen">
+			<remap from="/joint_states" to="/blattoidea/joint_states" />
+		</node>
+
+		<include file="$(find agent)/launch/empty_world.launch" >
+			<arg name="world_name" value="$(find agent)/worlds/complex_6.world"/>
+			
+	   </include>
+
+
+		<node
+		name="tf_world_map"
+		pkg="tf"
+		type="static_transform_publisher"
+		args="0 0 0 0 0 0 world map 40" />
+		<node
+		name="tf_map_odom"
+		pkg="tf"
+		type="static_transform_publisher"
+		args="0 0 0 0 0 0 map odom 40" />
+		
+		<node
+		name="spawn_model"
+		pkg="gazebo_ros"
+		type="spawn_model"
+		args="-urdf -model agent -param robot_description -x 0 -y 0"
+		output="screen" />
+		
+		<node name="joy_driver"	pkg="joy" type="joy_node" output="screen" >
+			<param name="autorepeat_rate" value="10.0" />
+			
+		</node>
+		<!--
+		<node name="teleop_joy" pkg="teleop_twist_joy"	type="teleop_node"	output="screen">
+			<rosparam command="load" file="$(find agent)/config/teleop_joy_config.yaml" />
+			<remap from="cmd_vel" to="joy_vel"/>
+		</node>
+		-->
+		<node pkg="twist_mux" type="twist_mux" name="twist_mux" output="screen">
+			<remap from="cmd_vel_out" to="$(arg cmd_vel_out)"/>
+			<rosparam file="$(arg config_locks)" command="load"/>
+			<rosparam file="$(arg config_topics)" command="load"/>
+		</node>
+		
+
+		
+		
+		<node name="depth_image_compressor" pkg="agent" type="depth_image_compressor_node.py" output="screen">
+			<remap from="compressed" to="/kinect/depth_cv_bridge/compressed"/>
+			<remap from="image_raw" to="/kinect/depth/image_raw"/>
+		</node>
+		
+		<node
+		name="fake_joint_calibration"
+		pkg="rostopic"
+		type="rostopic"
+		args="pub /calibrated std_msgs/Bool true" />
+		
+		<include file="$(find agent)/launch/yaml_launcher.launch" />
+		
+	</group>
+
+
+
+    
+</launch>

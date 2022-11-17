@@ -1,0 +1,7 @@
+README.md
+setup.py
+exits_detector/__init__.py
+exits_detector.egg-info/PKG-INFO
+exits_detector.egg-info/SOURCES.txt
+exits_detector.egg-info/dependency_links.txt
+exits_detector.egg-info/top_level.txt

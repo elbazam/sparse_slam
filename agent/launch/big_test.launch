@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+
+	
+		<node pkg="room_slam" type="big_repeated_slam.py" name="repeat_test_node" output="screen"/>
+
+
+</launch>
+
+		

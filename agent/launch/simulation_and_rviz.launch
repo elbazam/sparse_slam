@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+
+	
+		<include file="$(find agent)/launch/small_complex_world_6.launch" />
+		
+		<node
+		type = "rviz"
+		name = "rviz"
+		pkg = "rviz"
+		args = "/home/.rviz/default.rviz"
+		launch-prefix="bash -c 'sleep 3; $0 $@' " 
+		/>
+
+
+</launch>
+
+		

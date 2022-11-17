@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+    <group ns="Prob_angles">
+        <rosparam file="$(find agent)/config/problematic_angles.yaml" />
+    </group>
+    
+</launch>
