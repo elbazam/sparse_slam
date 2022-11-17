@@ -1,6 +1,6 @@
 ### Acknowledgement
 
-This work was done collaborating with Or Tslil and Tal Feiner, please follow their works.
+This work was done collaborating with <a href="https://github.com/ortslil64" target="_blank">Or Tslil</a>  and <a href="https://github.com/TalFeiner" target="_blank">Tal Feiner</a>, please follow their works.
 
 # sparse_slam
 
