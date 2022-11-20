@@ -33,10 +33,11 @@ Line extration node is forked from https://github.com/bguplp/laser_line_extracti
 
 ## Setup
 
-1. Copy, install and make repository:
+1. Copy, install and make the repository:
 ```sh
 $ cd ~/your_catkin_worspace/src
 $ git clone https://github.com/elbazam/sparse_slam.git
+$ cd sparse_slam
 $ pip3 install -e ./object_detector
 $ pip3 install -e ./exits_detector
 $ pip3 install -e ./room_slam
@@ -50,15 +51,15 @@ $ cd ~/your_catkin_worspace/src
 $ https://github.com/TalFeiner/robot_description
 $ cd ..
 $ catkin_make
-$ roscd robot_description
+$ cd src/robot_description
 $ chmod +x ./python3_alongside_python2.sh
 $ ./python3_alongside_python2.sh
 ```
 
 
 3. Replace the following contents:
-- In object_detector/object_detector/ros/object_localizer_node.py , line 89, replace the path to your path.
-- self.real_path = '/home/<Computer_name/<your_workspace_name/src/yolov3-tf2>'
+- In <your_workspace_name>/src/sparse_slam/object_detector/object_detector/ros/object_localizer_node.py , line 89, replace the written path to your path:
+- self.real_path = '/home/<Computer_name/<your_workspace_name>/src/yolov3-tf2>'
 
 - Go to the xarco file ~/robot_description/blattoidea/urdf/kinect.xarco
 - Change the orientation of the kinect to 0 0 0 from 0 0.3 0
